@@ -65,22 +65,27 @@ final class PuppyLogHandlerTests: XCTestCase {
             return handler
         }
 
-        let nestedLvl2Metadata: Logging.Logger.Metadata = [
-            "nested_lvl2_foo": "bar"
+        let lvl3Metadata: Logging.Logger.Metadata = [
+            "name": "lvl_3"
         ]
 
-        let nestedLvl1Metadata: Logging.Logger.Metadata = [
-            "nested_foo": "bar",
-            "nested_nested_foo": .dictionary(nestedLvl2Metadata)
+        let lvl2Metadata: Logging.Logger.Metadata = [
+            "name": "lvl_2",
+            "nested_lvl_3": .dictionary(lvl3Metadata)
         ]
 
-        let metadata: Logging.Logger.Metadata = [
-            "foo": .string("bar"),
-            "nested": .dictionary(nestedLvl1Metadata)
+        let lvl1Metadata: Logging.Logger.Metadata = [
+            "name": "lvl_1",
+            "nested_lvl_2": .dictionary(lvl2Metadata)
+        ]
+
+        let rootMetadata: Logging.Logger.Metadata = [
+            "name": "root_metadata",
+            "nested_lvl_1": .dictionary(lvl1Metadata)
         ]
 
         var logger: Logger = .init(label: "com.example.yourapp.swiftlog")
-        logger.debug("Hello World", metadata: metadata)
+        logger.debug("Hello World", metadata: rootMetadata)
         
         #endif
     }
