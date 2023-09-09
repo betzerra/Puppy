@@ -510,7 +510,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --format\n    swiftlint\nelse\necho\n    \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Support for M1 Macs: Homebrew is installed on /opt/homebrew/ by default\nPATH=/opt/homebrew/bin/:$PATH\n\nif which swiftlint >/dev/null; then\n    swiftlint autocorrect --format\n    swiftlint\nelse\necho\n    \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
