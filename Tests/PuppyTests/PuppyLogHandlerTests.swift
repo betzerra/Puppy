@@ -59,11 +59,7 @@ final class PuppyLogHandlerTests: XCTestCase {
         var puppy = Puppy()
         puppy.add(consoleLogger)
 
-        LoggingSystem.bootstrap {
-            var handler = PuppyLogHandler(label: $0, puppy: puppy)
-            handler.logLevel = .trace
-            return handler
-        }
+        let handler = PuppyLogHandler(label: "", puppy: puppy)
 
         let lvl3Metadata: Logging.Logger.Metadata = [
             "name": "lvl_3"
@@ -84,9 +80,15 @@ final class PuppyLogHandlerTests: XCTestCase {
             "nested_lvl_1": .dictionary(lvl1Metadata)
         ]
 
-        var logger: Logger = .init(label: "com.example.yourapp.swiftlog")
-        logger.debug("Hello World", metadata: rootMetadata)
-        
+        handler.log(
+            level: .debug,
+            message: "Hello World",
+            metadata: rootMetadata,
+            source: "source",
+            file: "file",
+            function: "function",
+            line: 42
+        )
         #endif
     }
 

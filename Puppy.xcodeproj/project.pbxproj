@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		67C9D5562AAC2D9600A6429F /* Metadata+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9D5552AAC2D9600A6429F /* Metadata+Encodable.swift */; };
 		C71A59F227CA57CD00A577EC /* FileManager+Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71A59F127CA57CD00A577EC /* FileManager+Windows.swift */; };
 		C71A59F427CA580100A577EC /* FileManager+WindowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71A59F327CA580100A577EC /* FileManager+WindowsTests.swift */; };
 		C74F94B226777D38003A88BE /* CPuppy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74F94A926777D38003A88BE /* CPuppy.framework */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67C9D5552AAC2D9600A6429F /* Metadata+Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Metadata+Encodable.swift"; sourceTree = "<group>"; };
 		C712BB09266F31A60016A768 /* CPuppy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPuppy.h; sourceTree = "<group>"; };
 		C712BB0A266F31B10016A768 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		C712BB0B266F31C80016A768 /* CPuppy.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = CPuppy.c; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				C7ED71FA252DC0C50065B955 /* OSLogger.swift */,
 				C7ED71F6252DC0C50065B955 /* Puppy.swift */,
 				C7ED71F4252DC0C50065B955 /* PuppyLogHandler.swift */,
+				67C9D5552AAC2D9600A6429F /* Metadata+Encodable.swift */,
 				C7ED71F1252DC0C50065B955 /* SystemLogger.swift */,
 			);
 			path = Puppy;
@@ -547,6 +550,7 @@
 				C7CF79DB28F6DA0900CF55C3 /* Loggerable.swift in Sources */,
 				C7ED7204252DC0C50065B955 /* ConsoleLogger.swift in Sources */,
 				C7ED7202252DC0C50065B955 /* Puppy.swift in Sources */,
+				67C9D5562AAC2D9600A6429F /* Metadata+Encodable.swift in Sources */,
 				C7ED7200252DC0C50065B955 /* PuppyLogHandler.swift in Sources */,
 				C7ED7206252DC0C50065B955 /* OSLogger.swift in Sources */,
 				C7CF79DF28F6DE8600CF55C3 /* Compatibility.swift in Sources */,

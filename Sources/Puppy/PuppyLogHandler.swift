@@ -32,11 +32,23 @@ public struct PuppyLogHandler: LogHandler, Sendable {
 
     private func swiftLogInfo(_ metadata: Logger.Metadata?, source: String) -> [String: String] {
         var value = ["label": label, "source": source]
-        if let metadata = metadata {
-            value["metadata"] = "\(mergedMetadata(metadata))"
+
+        let mergedMetadata = mergedMetadata(metadata)
+        guard let stringMetadata = stringMetadata(mergedMetadata) else {
+            return value
         }
 
+        value["metadata"] = stringMetadata
         return value
+    }
+
+    private func stringMetadata(_ metadata: Logger.Metadata) -> String? {
+        do {
+            let data = try JSONEncoder().encode(metadata)
+            return String(data: data, encoding: .utf8)
+        } catch {
+            return nil
+        }
     }
 
     private func mergedMetadata(_ metadata: Logger.Metadata?) -> Logger.Metadata {
