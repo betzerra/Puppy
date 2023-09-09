@@ -47,4 +47,50 @@ final class PuppyLogHandlerTests: XCTestCase {
 
         #endif // canImport(Logging)
     }
+
+    func testMetadataLogging() throws {
+        #if canImport(Logging)
+        let consoleLogger: ConsoleLogger = .init(
+            "com.example.yourapp.consolelogger.swiftlog",
+            logLevel: .trace,
+            logFormat: LogFormatter()
+        )
+
+        var puppy = Puppy()
+        puppy.add(consoleLogger)
+
+        LoggingSystem.bootstrap {
+            var handler = PuppyLogHandler(label: $0, puppy: puppy)
+            handler.logLevel = .trace
+            return handler
+        }
+
+        let nestedLvl2Metadata: Logging.Logger.Metadata = [
+            "nested_lvl2_foo": "bar"
+        ]
+
+        let nestedLvl1Metadata: Logging.Logger.Metadata = [
+            "nested_foo": "bar",
+            "nested_nested_foo": .dictionary(nestedLvl2Metadata)
+        ]
+
+        let metadata: Logging.Logger.Metadata = [
+            "foo": .string("bar"),
+            "nested": .dictionary(nestedLvl1Metadata)
+        ]
+
+        var logger: Logger = .init(label: "com.example.yourapp.swiftlog")
+        logger.debug("Hello World", metadata: metadata)
+        
+        #endif
+    }
+
+    private struct LogFormatter: LogFormattable, Sendable {
+        func formatMessage(_ level: LogLevel, message: String, tag: String, function: String, file: String, line: UInt, swiftLogInfo: [String: String], label: String, date: Date, threadID: UInt64) -> String {
+            let date = dateFormatter(date, withFormatter: DateFormatter())
+            let fileName = fileName(file)
+            let moduleName = moduleName(file)
+            return "\(date) \(threadID) [\(level.emoji) \(level)] \(swiftLogInfo) \(moduleName)/\(fileName)#L.\(line) \(function) \(message)".colorize(level.color)
+        }
+    }
 }
